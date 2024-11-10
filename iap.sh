@@ -6,7 +6,7 @@ gcloud compute firewall-rules create allow-iap-ingress \
     --network=[YOUR_NETWORK] \
     --direction=INGRESS \
     --priority=1000 \
-    --source-ranges=35.235.240.0/20 \
+    --source-ranges=xx.xx.xxx.xxx/20 \
     --target-tags=allow-iap \
     --action=ALLOW \
     --rules=tcp:22
