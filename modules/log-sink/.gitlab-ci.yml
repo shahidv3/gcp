@@ -1,0 +1,40 @@
+stages:
+  - validate
+  - plan
+  - apply
+
+variables:
+  TF_INPUT: "false"
+  TERRAGRUNT_TFPATH: "/usr/local/bin/terraform"
+  TERRAGRUNT_FOLDER: ""  # Set this as CI/CD variable in GitLab UI or override in pipeline
+
+before_script:
+  - echo "Using Terragrunt folder: $TERRAGRUNT_FOLDER"
+  - terragrunt --version
+  - terraform --version
+  - cd $TERRAGRUNT_FOLDER
+
+validate:
+  stage: validate
+  script:
+    - terragrunt hclfmt --recursive
+    - terragrunt validate
+  only:
+    - merge_requests
+    - branches
+
+plan:
+  stage: plan
+  script:
+    - terragrunt plan --terragrunt-non-interactive
+  only:
+    - merge_requests
+    - branches
+
+apply:
+  stage: apply
+  script:
+    - terragrunt apply --terragrunt-non-interactive --auto-approve
+  when: manual
+  only:
+    - main
