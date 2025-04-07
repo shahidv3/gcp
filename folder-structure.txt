@@ -1,0 +1,29 @@
+terraform-modules/
+└── google-log-sync/
+    ├── main.tf
+    ├── variables.tf
+    ├── outputs.tf
+    └── service-accounts.tf
+
+terragrunt-live/
+├── dev/
+│   ├── vpc-log-sync/
+│   │   └── terragrunt.hcl
+│   ├── iam-audit-log-sync/
+│   │   └── terragrunt.hcl
+│   └── vm-log-sync/
+│       └── terragrunt.hcl
+├── staging/
+│   ├── vpc-log-sync/
+│   │   └── terragrunt.hcl
+│   ├── iam-audit-log-sync/
+│   │   └── terragrunt.hcl
+│   └── vm-log-sync/
+│       └── terragrunt.hcl
+└── prod/
+    ├── vpc-log-sync/
+    │   └── terragrunt.hcl
+    ├── iam-audit-log-sync/
+    │   └── terragrunt.hcl
+    └── vm-log-sync/
+        └── terragrunt.hcl
