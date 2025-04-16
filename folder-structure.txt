@@ -29,13 +29,6 @@ terragrunt-live/
         └── terragrunt.hcl
 
 
-hope this message finds you well.
-
-We are currently using Oracle Cloud Object Storage for managing our data. We recently encountered a scenario where certain objects were removed from a bucket and we are exploring the possibility of recovering them. Unfortunately, these objects were deleted more than 30 days ago, and we understand that the standard retention and recovery options may no longer apply.
-
-Could you please advise if there is any way—through internal backups, archival mechanisms, or by raising a service request—to recover deleted objects beyond the 30-day period? If such a recovery is not standard, we would appreciate any potential exceptions, recommendations, or escalations that could be explored.
-
-Looking forward to your guidance on this matter.
 
 
 
