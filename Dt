@@ -1,0 +1,14 @@
+kubectl delete crd dynatraceoneagents.dynatrace.com
+kubectl delete crd dynatraceactivegates.dynatrace.com
+kubectl delete crd dynatracecapabilities.dynatrace.com
+# ...any other related resources
+
+kubectl delete ns dynatrace  # optional if you're cleaning up fully
+
+
+helm install dynatrace-operator oci://public.ecr.aws/dynatrace/dynatrace-operator \
+  --version 1.4.2 \
+  --namespace dynatrace \
+  --create-namespace \
+  --set csidriver.enabled=false \
+  --atomic
