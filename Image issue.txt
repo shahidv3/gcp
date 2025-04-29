@@ -1,0 +1,21 @@
+Dynatrace OneAgent Image Pull Issue Post OKE Upgrade
+
+After upgrading our OKE cluster, we observed that the Dynatrace OneAgent failed to pull its image from the Dynatrace Main Edge Private Registry. This issue specifically occurs with CRIO version 1.3.0, which was included in our upgraded OKE image.
+
+Dynatrace support confirmed that this is a known issue and has been addressed in CRIO version 1.3.2. The root cause is that the image pull times out when using CRIO 1.3.0 with the Dynatrace private registry.
+
+As a workaround, Dynatrace support suggested:
+	1.	Increasing the image pull timeout in CRIO configuration.
+	2.	Upgrading CRIO to version 1.3.2.
+
+However, both options are not feasible for us, as these changes would apply at the OKE base image level, potentially impacting other workloads.
+
+Workaround Implemented:
+
+Instead, we resolved the issue by mirroring the OneAgent image to our internal Harbor registry and reconfiguring our environment to pull from there. This allowed OneAgent to pull images successfully without requiring CRIO-level changes.
+
+Operational Impact:
+	•	Previously, OneAgent updates occurred automatically when a new stable version was available.
+	•	Due to the current image pull issue, we have disabled automatic updates of OneAgent via the Dynatrace UI.
+	•	Going forward, OneAgent patching will be managed manually, at least until the next quarter.
+	•	Additionally, for future OKE upgrades, we must verify the CRIO version compatibility to ensure this issue does not reoccur.
