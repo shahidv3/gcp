@@ -1,0 +1,19 @@
+Update: NGINX Ingress Controller v1.2.1 Upgrade in Dev Clusters
+
+Hi Team,
+
+This is to update you that the NGINX Ingress Controller has been successfully upgraded to version 1.2.1 across all development clusters. The upgrade went smoothly and the controller is operating as expected.
+
+Before we move forward with upgrading it in the production environment, please ensure the following key prerequisites are addressed:
+	1.	Node Pool CPU Capacity
+Confirm that the production node pool where NGINX will be scheduled has sufficient CPU resources.
+Recommended: ≥ 2 vCPUs per node to support the admission webhook and runtime resource demands of v1.2.1.
+	2.	Correct Node Labeling
+Ensure the production nodes intended for NGINX are labeled correctly (e.g., ingress-ready=true) to ensure appropriate pod scheduling.
+	3.	Ingress Annotations Compatibility
+The updated controller version introduces stricter webhook validations.
+Please review any custom or risky annotations (e.g., nginx.ingress.kubernetes.io/server-snippet) used in your Ingress resources.
+	•	Ensure they are valid and accepted by the new version.
+	•	Modify or whitelist as needed before applying them in production.
+
+Once the above items are validated and in place, we can proceed with the production rollout.
